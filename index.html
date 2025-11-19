@@ -1,0 +1,613 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AWS Developer Associate Exam Focus</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #1a202c;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        overflow: hidden;
+      }
+
+      .container {
+        width: 95%;
+        max-width: 1000px;
+        aspect-ratio: 16/9;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        border-radius: 12px;
+        overflow: hidden;
+        background: #0f1115;
+        position: relative;
+        outline: none; /* Remove blue border on focus */
+      }
+
+      svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+        user-select: none;
+      }
+
+      .instructions {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.6);
+        padding: 8px 16px;
+        border-radius: 20px;
+        color: #a0aec0;
+        font-size: 14px;
+        pointer-events: none;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .key {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 2px 6px;
+        border-radius: 4px;
+        color: white;
+        font-family: monospace;
+        font-weight: bold;
+      }
+
+      /* Custom scrollbar for the detail text if it overflows */
+      #detailForeignObject body {
+        margin: 0;
+        overflow-y: auto;
+      }
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #4a5568;
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #718096;
+      }
+
+      /* Link styles injected dynamically */
+      .doc-link {
+        display: inline-flex;
+        align-items: center;
+        margin-top: 20px;
+        padding: 8px 12px;
+        background: rgba(99, 179, 237, 0.1);
+        border: 1px solid rgba(99, 179, 237, 0.3);
+        border-radius: 4px;
+        color: #63b3ed;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: bold;
+        transition: all 0.2s;
+      }
+      .doc-link:hover {
+        background: rgba(99, 179, 237, 0.2);
+        transform: translateY(-1px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container" tabindex="0" id="appContainer">
+      <svg viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg">
+        <!-- Definitions for Gradients and Filters -->
+        <defs>
+          <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color: #1a202c; stop-opacity: 1" />
+            <stop offset="100%" style="stop-color: #2d3748; stop-opacity: 1" />
+          </linearGradient>
+
+          <linearGradient id="highlightGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color: #ec8d12; stop-opacity: 0.9" />
+            <stop
+              offset="100%"
+              style="stop-color: #f6ad55; stop-opacity: 0.2"
+            />
+          </linearGradient>
+
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="2.5" result="coloredBlur" />
+            <feMerge>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
+        <!-- Background -->
+        <rect width="1000" height="600" fill="url(#bgGradient)" />
+
+        <!-- Header -->
+        <g transform="translate(50, 60)">
+          <text
+            x="0"
+            y="0"
+            fill="#ffffff"
+            font-size="28"
+            font-weight="bold"
+            font-family="sans-serif"
+          >
+            AWS Services List
+          </text>
+          <line
+            x1="0"
+            y1="15"
+            x2="400"
+            y2="15"
+            stroke="#ec8d12"
+            stroke-width="3"
+          />
+        </g>
+
+        <g transform="translate(500, 60)">
+          <text
+            x="0"
+            y="0"
+            fill="#ffffff"
+            font-size="28"
+            font-weight="bold"
+            font-family="sans-serif"
+          >
+            Developer Exam Focus (DVA-C02)
+          </text>
+          <line
+            x1="0"
+            y1="15"
+            x2="450"
+            y2="15"
+            stroke="#4299e1"
+            stroke-width="3"
+          />
+        </g>
+
+        <!-- Left Panel: Scrolling List Container -->
+        <g transform="translate(50, 100)">
+          <!-- Background for List Area -->
+          <rect
+            width="400"
+            height="450"
+            fill="rgba(0,0,0,0.3)"
+            rx="8"
+            stroke="#4a5568"
+            stroke-width="1"
+          />
+
+          <!-- Selection Box (Static visual cue - Middle of the viewport) -->
+          <rect
+            y="190"
+            width="400"
+            height="70"
+            fill="none"
+            stroke="#ec8d12"
+            stroke-width="2"
+            rx="4"
+            filter="url(#glow)"
+          />
+
+          <!-- Indicator arrow pointing to detail view -->
+          <path
+            d="M 400 225 L 430 225"
+            stroke="#ec8d12"
+            stroke-width="2"
+            fill="none"
+          />
+          <circle cx="430" cy="225" r="4" fill="#ec8d12" />
+
+          <!-- Mask for scrolling -->
+          <clipPath id="listClip">
+            <rect width="400" height="450" rx="8" />
+          </clipPath>
+
+          <!-- The Scrolling Group -->
+          <g clip-path="url(#listClip)">
+            <g id="scrollGroup" style="cursor: pointer">
+              <!-- Items will be injected here by JS -->
+            </g>
+          </g>
+
+          <!-- Overlay Gradients to fade top/bottom for aesthetic depth -->
+          <rect
+            width="400"
+            height="60"
+            fill="url(#bgGradient)"
+            opacity="0.9"
+            style="mix-blend-mode: multiply"
+            pointer-events="none"
+          />
+          <rect
+            y="390"
+            width="400"
+            height="60"
+            fill="url(#bgGradient)"
+            opacity="0.9"
+            style="mix-blend-mode: multiply"
+            pointer-events="none"
+          />
+        </g>
+
+        <!-- Right Panel: Details Display -->
+        <g transform="translate(480, 100)">
+          <!-- Detail Card Background -->
+          <rect
+            x="0"
+            y="0"
+            width="470"
+            height="450"
+            rx="8"
+            fill="rgba(255,255,255,0.05)"
+            stroke="#4a5568"
+            stroke-width="1"
+          />
+
+          <g id="detailContent" transform="translate(30, 50)">
+            <text
+              id="detailTitle"
+              x="0"
+              y="0"
+              fill="#63b3ed"
+              font-size="32"
+              font-weight="bold"
+            >
+              Select a Service
+            </text>
+
+            <g transform="translate(0, 60)">
+              <text
+                fill="#a0aec0"
+                font-size="14"
+                font-weight="bold"
+                letter-spacing="1"
+              >
+                KEY TOPICS
+              </text>
+              <foreignObject
+                id="detailForeignObject"
+                x="0"
+                y="10"
+                width="410"
+                height="330"
+              >
+                <div
+                  id="detailBody"
+                  xmlns="http://www.w3.org/1999/xhtml"
+                  style="
+                    color: white;
+                    font-family: sans-serif;
+                    font-size: 18px;
+                    line-height: 1.6;
+                    padding-right: 10px;
+                  "
+                >
+                  Use the arrow keys to navigate.
+                </div>
+              </foreignObject>
+            </g>
+          </g>
+        </g>
+      </svg>
+
+      <div class="instructions">
+        <span>Use</span>
+        <span class="key">↑</span>
+        <span class="key">↓</span>
+        <span>keys to navigate</span>
+      </div>
+
+      <script>
+        // Data extracted from the user's image, mapped to Exam Focus Areas + Documentation Links
+        const services = [
+          {
+            name: "AWS CDK",
+            url: "https://docs.aws.amazon.com/cdk/v2/guide/home.html",
+            focus:
+              "<ul><li><b>Constructs:</b> L1 (CloudFormation resources), L2 (Intent-based), L3 (Patterns).</li><li><b>Commands:</b> <code>cdk synth</code>, <code>cdk deploy</code>, <code>cdk bootstrap</code>, <code>cdk diff</code>.</li><li><b>Testing:</b> Fine-grained assertions using <code>cdk-assertions</code> module.</li></ul>",
+          },
+          {
+            name: "AWS CLI",
+            url: "https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html",
+            focus:
+              "<ul><li><b>Configuration:</b> <code>~/.aws/credentials</code> vs <code>~/.aws/config</code>.</li><li><b>Pagination:</b> Handling <code>--page-size</code> and <code>--starting-token</code> (NextToken).</li><li><b>Output:</b> Filtering output with <code>--query</code> (JMESPath).</li></ul>",
+          },
+          {
+            name: "AWS DMS",
+            url: "https://docs.aws.amazon.com/dms/latest/userguide/Welcome.html",
+            focus:
+              "<ul><li><b>CDC:</b> Change Data Capture for ongoing replication.</li><li><b>SCT:</b> Schema Conversion Tool usage for heterogeneous migrations (e.g., Oracle -> Aurora PostgreSQL).</li></ul>",
+          },
+          {
+            name: "Amazon DocumentDB",
+            url: "https://docs.aws.amazon.com/documentdb/latest/developerguide/what-is.html",
+            focus:
+              "<ul><li><b>Compatibility:</b> Fully managed MongoDB-compatible database service.</li><li><b>High Availability:</b> Storage scales automatically up to 64TB; 6-way replication across 3 AZs.</li></ul>",
+          },
+          {
+            name: "Amazon EBS",
+            url: "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html",
+            focus:
+              "<ul><li><b>Encryption:</b> Encrypting unencrypted volumes via Snapshots (Snapshot -> Copy + Encrypt -> New Vol).</li><li><b>Volume Types:</b> Use <code>gp3</code> for general purpose, <code>io2</code> for mission-critical high IOPS.</li></ul>",
+          },
+          {
+            name: "Amazon EC2",
+            url: "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html",
+            focus:
+              "<ul><li><b>User Data:</b> Shell scripts running on first boot only.</li><li><b>Instance Profiles:</b> Attaching IAM Roles to instances (avoid hardcoded keys).</li><li><b>IMDSv2:</b> Requires session token (PUT request) for better security.</li></ul>",
+          },
+          {
+            name: "Amazon ECR",
+            url: "https://docs.aws.amazon.com/AmazonECR/latest/userguide/what-is-ecr.html",
+            focus:
+              "<ul><li><b>Login:</b> <code>aws ecr get-login-password | docker login</code>.</li><li><b>Lifecycle Policies:</b> Automate cleanup of untagged/old images.</li><li><b>Cross-account:</b> Repository policies to allow other accounts pull access.</li></ul>",
+          },
+          {
+            name: "Amazon ECS",
+            url: "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html",
+            focus:
+              "<ul><li><b>Task Definition:</b> The blueprint (Docker image, CPU/RAM, env vars).</li><li><b>Fargate:</b> Serverless compute engine (no EC2 management).</li><li><b>Services:</b> Maintains desired count of tasks; integrates with Load Balancers.</li></ul>",
+          },
+          {
+            name: "Amazon EFS",
+            url: "https://docs.aws.amazon.com/efs/latest/ug/whatisefs.html",
+            focus:
+              "<ul><li><b>Lambda Integration:</b> Providing stateful storage for Lambda functions.</li><li><b>Access Points:</b> Enforce specific POSIX user ID and root directory for applications.</li></ul>",
+          },
+          {
+            name: "Amazon EKS",
+            url: "https://docs.aws.amazon.com/eks/latest/userguide/what-is-eks.html",
+            focus:
+              "<ul><li><b>kubectl:</b> Main tool for interacting with the cluster.</li><li><b>IAM Authenticator:</b> Mapping IAM users/roles to Kubernetes RBAC.</li></ul>",
+          },
+          {
+            name: "IAM",
+            url: "https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html",
+            focus:
+              "<ul><li><b>Policy Structure:</b> Effect, Action, Resource, Condition.</li><li><b>PassRole:</b> Permission needed to assign a role to a service (like EC2 or Lambda).</li><li><b>Evaluation Logic:</b> Explicit Deny > Explicit Allow > Implicit Deny.</li></ul>",
+          },
+          {
+            name: "Amazon Keyspaces",
+            url: "https://docs.aws.amazon.com/keyspaces/latest/devguide/what-is-keyspaces.html",
+            focus:
+              "<ul><li><b>Cassandra:</b> Serverless, scalable Apache Cassandra-compatible database.</li><li><b>Capacity Modes:</b> On-demand (unpredictable traffic) vs Provisioned (predictable).</li></ul>",
+          },
+          {
+            name: "AWS KMS",
+            url: "https://docs.aws.amazon.com/kms/latest/developerguide/overview.html",
+            focus:
+              "<ul><li><b>Envelope Encryption:</b> Use KMS to generate data keys for encrypting large data locally.</li><li><b>Key Policies:</b> The only way to control access to a CMK (Customer Master Key).</li></ul>",
+          },
+          {
+            name: "AWS Managed Microsoft AD",
+            url: "https://docs.aws.amazon.com/directoryservice/latest/admin-guide/directory_microsoft_ad.html",
+            focus:
+              "<ul><li><b>Trust Relationships:</b> One-way or Two-way trusts with on-prem AD.</li><li><b>Seamless Domain Join:</b> Auto-join Linux/Windows EC2 instances.</li></ul>",
+          },
+          {
+            name: "AWS Private CA",
+            url: "https://docs.aws.amazon.com/privateca/latest/userguide/PcaWelcome.html",
+            focus:
+              "<ul><li><b>Internal PKI:</b> Create private certificate authorities hierarchy.</li><li><b>Automated Renewal:</b> Works natively with ACM for private certs.</li></ul>",
+          },
+          {
+            name: "Amazon RDS",
+            url: "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html",
+            focus:
+              "<ul><li><b>RDS Proxy:</b> Connection pooling to handle thousands of Lambda concurrent connections.</li><li><b>IAM Authentication:</b> Use auth token instead of database password.</li></ul>",
+          },
+          {
+            name: "Amazon S3",
+            url: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html",
+            focus:
+              "<ul><li><b>Presigned URLs:</b> Grant temporary access to private objects.</li><li><b>S3 Select:</b> Query data within objects using SQL expressions (scan less data).</li><li><b>CORS:</b> Configuration for cross-origin browser access.</li></ul>",
+          },
+          {
+            name: "AWS SAM",
+            url: "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html",
+            focus:
+              "<ul><li><b>template.yaml:</b> Extension of CloudFormation; simplifies Serverless resource definition.</li><li><b>Policy Templates:</b> Shortcuts for IAM permissions (e.g., <code>S3ReadPolicy</code>).</li><li><b>Local Testing:</b> <code>sam local start-api</code> or <code>sam local invoke</code>.</li></ul>",
+          },
+          {
+            name: "AWS SCT",
+            url: "https://docs.aws.amazon.com/SchemaConversionTool/latest/userguide/WELCOME_SchemaConversionTool.html",
+            focus:
+              "<ul><li><b>Schema Conversion:</b> Converts database schema, stored procedures, and views from one engine to another.</li><li><b>Assessment Report:</b> Identifies migration complexity.</li></ul>",
+          },
+          {
+            name: "Amazon SES",
+            url: "https://docs.aws.amazon.com/ses/latest/dg/Welcome.html",
+            focus:
+              "<ul><li><b>Sandbox Mode:</b> Can only send to verified emails until production access granted.</li><li><b>Templates:</b> Personalized email templates with replacement tags.</li></ul>",
+          },
+          {
+            name: "Amazon SNS",
+            url: "https://docs.aws.amazon.com/sns/latest/dg/welcome.html",
+            focus:
+              "<ul><li><b>Fan-out:</b> Publish once to SNS -> Trigger multiple SQS queues/Lambdas.</li><li><b>Message Filtering:</b> Subscription filter policies to receive only subset of messages.</li></ul>",
+          },
+          {
+            name: "Amazon SQS",
+            url: "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html",
+            focus:
+              "<ul><li><b>Visibility Timeout:</b> Time a message is invisible to other consumers after retrieval.</li><li><b>DLQ (Dead Letter Queue):</b> Where failed messages go after max receive count.</li><li><b>Long Polling:</b> Set <code>WaitTimeSeconds</code> to reduce cost and empty responses.</li></ul>",
+          },
+          {
+            name: "AWS STS",
+            url: "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html",
+            focus:
+              "<ul><li><b>AssumeRole:</b> Returns temp credentials (AccessKey, SecretKey, SessionToken).</li><li><b>Web Identity:</b> Federation with OIDC providers (Google, FB, etc.).</li></ul>",
+          },
+          {
+            name: "Amazon VPC",
+            url: "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html",
+            focus:
+              "<ul><li><b>VPC Endpoints:</b> Private connectivity to AWS services (Interface vs Gateway).</li><li><b>Flow Logs:</b> Capture IP traffic information for ENIs.</li><li><b>Security Groups:</b> Stateful firewalls at instance level.</li></ul>",
+          },
+        ];
+
+        const scrollGroup = document.getElementById("scrollGroup");
+        const detailTitle = document.getElementById("detailTitle");
+        const detailBody = document.getElementById("detailBody");
+        const detailContent = document.getElementById("detailContent");
+
+        const ITEM_HEIGHT = 60;
+        const SELECTION_CENTER_Y = 195; // Target Y position for the selected item to be centered visually
+
+        // State
+        let selectedIndex = 0;
+        let currentScrollY = SELECTION_CENTER_Y;
+        let targetScrollY = SELECTION_CENTER_Y;
+
+        // Initialize List
+        services.forEach((service, index) => {
+          const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+          g.setAttribute("transform", `translate(0, ${index * ITEM_HEIGHT})`);
+          g.style.transition = "opacity 0.3s";
+          g.style.cursor = "pointer";
+
+          // Click Event
+          g.addEventListener("click", () => {
+            selectItem(index);
+          });
+
+          // Background rect
+          const rect = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "rect",
+          );
+          rect.setAttribute("width", "400");
+          rect.setAttribute("height", ITEM_HEIGHT - 5);
+          rect.setAttribute("fill", "rgba(255,255,255,0.05)");
+          rect.setAttribute("rx", "4");
+          rect.setAttribute("class", "item-bg");
+
+          // Text
+          const text = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "text",
+          );
+          text.setAttribute("x", "20");
+          text.setAttribute("y", "35");
+          text.setAttribute("fill", "#e2e8f0");
+          text.setAttribute("font-size", "18");
+          text.setAttribute("font-family", "sans-serif");
+          text.textContent = service.name;
+
+          g.appendChild(rect);
+          g.appendChild(text);
+          scrollGroup.appendChild(g);
+        });
+
+        function selectItem(index) {
+          // Clamp index
+          if (index < 0) index = 0;
+          if (index >= services.length) index = services.length - 1;
+
+          selectedIndex = index;
+
+          // Calculate target scroll position
+          targetScrollY = SELECTION_CENTER_Y - selectedIndex * ITEM_HEIGHT;
+
+          updateDetails(index);
+          updateVisuals(index);
+        }
+
+        function updateDetails(index) {
+          const data = services[index];
+
+          // Text fade out/in effect
+          detailContent.style.opacity = 0.5;
+
+          setTimeout(() => {
+            detailTitle.textContent = data.name;
+            // Add the link to the documentation dynamically
+            detailBody.innerHTML =
+              data.focus +
+              `<a href="${data.url}" target="_blank" class="doc-link">
+                        Read Documentation <span style="margin-left: 5px;">↗</span>
+                     </a>`;
+            detailContent.style.opacity = 1;
+          }, 150);
+        }
+
+        function updateVisuals(activeIdx) {
+          const items = scrollGroup.children;
+          for (let i = 0; i < items.length; i++) {
+            const group = items[i];
+            const rect = group.querySelector("rect");
+            const text = group.querySelector("text");
+
+            if (i === activeIdx) {
+              rect.setAttribute("fill", "url(#highlightGrad)");
+              rect.setAttribute("stroke", "#ec8d12");
+              rect.setAttribute("stroke-width", "1");
+              text.setAttribute("fill", "#ffffff");
+              text.setAttribute("font-weight", "bold");
+              group.style.opacity = 1;
+            } else {
+              rect.setAttribute("fill", "rgba(255,255,255,0.05)");
+              rect.setAttribute("stroke", "none");
+              text.setAttribute("fill", "#a0aec0");
+              text.setAttribute("font-weight", "normal");
+
+              // Distance based opacity for style
+              const dist = Math.abs(i - activeIdx);
+              group.style.opacity = Math.max(0.3, 1 - dist * 0.15);
+            }
+          }
+        }
+
+        // Animation Loop for Smooth Scrolling
+        function animate() {
+          // Linear Interpolation (Lerp)
+          currentScrollY += (targetScrollY - currentScrollY) * 0.1;
+
+          // Apply transform
+          scrollGroup.setAttribute(
+            "transform",
+            `translate(0, ${currentScrollY})`,
+          );
+
+          requestAnimationFrame(animate);
+        }
+
+        // Input Handling
+        function handleKey(e) {
+          if (e.key === "ArrowUp") {
+            selectItem(selectedIndex - 1);
+            e.preventDefault(); // Prevent page scroll
+          } else if (e.key === "ArrowDown") {
+            selectItem(selectedIndex + 1);
+            e.preventDefault();
+          }
+        }
+
+        // Setup
+        document.addEventListener("keydown", handleKey);
+
+        // Focus container on click to ensure keys work
+        document.getElementById("appContainer").focus();
+
+        // Initial selection
+        selectItem(0);
+
+        // Start loop
+        animate();
+
+        // CSS Transition setup
+        detailContent.style.transition = "opacity 0.15s ease-out";
+      </script>
+    </div>
+  </body>
+</html>
